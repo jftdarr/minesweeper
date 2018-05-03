@@ -30,16 +30,22 @@ const generateBombBoard = (numberOfRows,numberOfColumns,numberOfBombs) => {
 
   // create a loop to place bombs based on numberOfBombs parameter.
   while (numberOfBombsPlaced < numberOfBombs) {
-    const randomRowIndex = Math.floor(Math.random() * numberOfRows);
-    const randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
-    board[randomRowIndex][randomColumnIndex] = 'B';
-    numberOfBombsPlaced++
+    let randomRowIndex = Math.floor(Math.random() * numberOfRows);
+    let randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
+
+    if (board[randomRowIndex][randomColumnIndex] !== 'B') {
+      board[randomRowIndex][randomColumnIndex] = 'B';
+      numberOfBombsPlaced++
+    }
+
     // To-do: This loop allows for bombs to be placed on top of other bombs.
     // Learn control flow and add correction here.
   }
 
   return board;
-};
+}
+
+const getNumberOfNeighborBombs ()
 
 const printBoard = (board) => {
   console.log(board.map(row => row.join(' | ')).join('\n'));
